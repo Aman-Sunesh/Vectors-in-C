@@ -5,56 +5,66 @@ using namespace std;
 
 Vector::Vector()
 {
-    size = 0;
-    capacity = 4;
+    vec_size = 0;
+    vec_capacity = 1;
+    arr = new Payload[vec_capacity];
 }
 
 void Vector::push_back(const Payload& x)
 {
-    if (size < capacity)
+    if (vec_size == vec_capacity)
     {
-        arr[size] = x;
-        size = size + 1;
+        int new_capacity = vec_capacity * 2;
+        Payload* new_arr = new Payload[new_capacity];
+
+        for (int i = 0; i  < vec_size; i++)
+        {
+            new_arr[i] = arr[i];
+        }
+
+        delete[] arr;
+        arr = new_arr;
+        vec_capacity = new_capacity;
     }
 
-    else
-    {
-        cout << "Error: Maximum capacity of the array has been reached" << endl;
-    }
+    arr[vec_size] = x;
+    vec_size = vec_size + 1;
 }
 
 void Vector::pop_back()
 {
-    if (size == 0)
+    if (vec_size == 0)
     {
         cout << "Error: Vector is already empty!" << endl;
     }
 
     else
     {
-        arr[size - 1] = Payload();
-        size = size - 1;
+        vec_size = vec_size - 1;
     }
 }
 
-int Vector::get_size() const
+int Vector::size() const
 {
-    return size;
+    return vec_size;
 }
 
-int Vector::get_capacity() const
+int Vector::capacity() const
 {
-    return capacity;
+    return vec_capacity;
 }
 
-/*
-void Vector::showVector()
+
+void Vector::print() const
 {
-    cout << "[";
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < vec_size; i++)
     {
-        cout << arr[i].print() << ", ";
+        arr[i].print();
     }
-    cout << "]" << endl;
 }
-*/
+
+
+Vector::~Vector()
+{
+    delete[] arr;
+}
