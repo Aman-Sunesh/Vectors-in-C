@@ -17,12 +17,13 @@ void Vector::push_back(const Payload& x)
         int new_capacity = vec_capacity * 2;
         Payload* new_arr = new Payload[new_capacity];
 
-        for (int i = 0; i  < vec_size; i++)
+        for (int i = 0; i < vec_size; i++)
         {
             new_arr[i] = arr[i];
         }
 
         delete[] arr;
+        
         arr = new_arr;
         vec_capacity = new_capacity;
     }

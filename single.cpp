@@ -153,3 +153,32 @@ int main() {
 
     return 0;
 }
+
+
+// Bonus
+
+struct Vector {
+    Payload *data;
+    int size;
+    int capacity;
+
+    Vector();
+    ~Vector();
+    void push_back(const Payload &p);
+    void pop_back();
+    int size() const;
+    int capacity() const;
+    void print() const;
+    void resize();
+    
+    struct Iterator {
+        Payload *ptr;
+        Iterator(Payload *p) : ptr(p) {}
+        Payload& operator*() { return *ptr; }
+        Iterator& operator++() { ++ptr; return *this; }
+        bool operator!=(const Iterator& other) { return ptr != other.ptr; }
+    };
+
+    Iterator begin() { return Iterator(data); }
+    Iterator end() { return Iterator(data + size); }
+};
