@@ -2,12 +2,10 @@
 
 #include "payload.h"
 
-using namespace std;
-
 struct Vector
 {
     int vec_size;  // Tracks the number of elements in the vector
-    int vec_capacity;  // Maximum possible number of elements in the vector (For task 1, capacity = 4 (constant))
+    int vec_capacity;  // Maximum possible number of elements in the vector
     Payload *arr;  // Dynamically allocated array of payloads
 
     Vector();

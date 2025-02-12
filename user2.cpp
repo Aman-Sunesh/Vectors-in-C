@@ -1,7 +1,5 @@
 #include <iostream> 
- 
 #include "myvector.h" 
-#include "mylist.h" 
  
 using std::cout; 
  
@@ -27,6 +25,4 @@ int main()
         i.print();  
         cout << "\n";
     }
-
-
 } 
