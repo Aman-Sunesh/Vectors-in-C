@@ -72,7 +72,7 @@ void Payload::print() const
 
 // ==================== Vector ====================
 
-// NOTE: In the original code the member variables were named "size" and "capacity" 
+// NOTE: In the original code the member variables were named "size" and "capacity"
 // and function names were also "size()" and "capacity()". To compile in one file 
 // without altering the functions’ logic, the data members have been renamed to _size 
 // and _capacity.
@@ -90,6 +90,32 @@ struct Vector {
     int capacity() const; // Returns the current capacity
     void print() const;  // Prints all the elements in the vector
     void resize();       // Resizes the array by doubling its capacity
+
+    // ===== Bonus: Range-based loop iterator support =====
+
+    // Non-const iterator
+    struct Iterator {
+        Payload* ptr;
+        Iterator(Payload* p) : ptr(p) { }
+        Payload& operator*() const { return *ptr; }
+        Iterator& operator++() { ++ptr; return *this; }
+        bool operator!=(const Iterator &other) const { return ptr != other.ptr; }
+    };
+
+    Iterator begin() { return Iterator(data); }
+    Iterator end() { return Iterator(data + _size); }
+
+    // Const iterator
+    struct ConstIterator {
+        const Payload* ptr;
+        ConstIterator(const Payload* p) : ptr(p) { }
+        const Payload& operator*() const { return *ptr; }
+        ConstIterator& operator++() { ++ptr; return *this; }
+        bool operator!=(const ConstIterator &other) const { return ptr != other.ptr; }
+    };
+
+    ConstIterator begin() const { return ConstIterator(data); }
+    ConstIterator end() const { return ConstIterator(data + _size); }
 };
 
 Vector::Vector() : _size(0), _capacity(1)
@@ -144,24 +170,25 @@ void Vector::print() const {
 // ==================== Main ====================
 
 int main() 
-{
-    auto showVector = [](const Vector & v)
+{ 
+    Vector v; 
+
+    v.push_back("apple"); 
+    v.push_back("pear"); 
+    v.push_back("banana"); 
+
+    for (const auto &i : v) 
     {
-        cout << "Vector size/capacity: " << v.size() << '/' << v.capacity() << '\n';
-        v.print();
-        cout << '\n';
-    };
-    
-    {
-        Vector v;
-        v.push_back("apple");
-        showVector(v);
-        v.push_back("pear");
-        v.push_back("banana");
-        showVector(v);
-        v.pop_back();
-        showVector(v);
+        i.print();  
+        cout << "\n";
     }
-}
+    
+    cout << "\n";
+    v.pop_back(); 
 
-
+    for (const auto &i : v) 
+    {
+        i.print();  
+        cout << "\n";
+    }
+} 

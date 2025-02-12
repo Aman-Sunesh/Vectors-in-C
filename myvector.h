@@ -15,4 +15,50 @@ struct Vector
     int capacity() const;
     void print() const;
     ~Vector();
+
+    struct Iterator
+    {
+        Payload* ptr;
+
+        Iterator(Payload* ptr)
+        {
+            this->ptr = ptr;
+        }
+
+        Iterator& operator ++()
+        {
+            ++ptr;
+            return *this;
+        }
+
+        bool operator !=(const Iterator& ptr2)
+        {
+            if (this->ptr != ptr2.ptr)
+            {
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+        }
+
+        Payload& operator *()
+        {
+            return *ptr;
+        }
+        
+    };
+
+    Iterator begin()
+    {
+        return Iterator(arr);
+    }
+
+    Iterator end()
+    {
+        return Iterator(arr + vec_size);
+    }
+
 }; 
