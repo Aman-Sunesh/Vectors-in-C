@@ -21,6 +21,8 @@ struct List
     List();
     void push_front(const Payload& x);
     void pop_front();
+    void push_back(const Payload& x);
+    void pop_back();
     int size() const;
     void print() const;
     ~List();

@@ -26,6 +26,56 @@ void List::pop_front()
     }
 }
 
+void List::push_back(const Payload& x)
+{
+    Node* temp = new Node(x);
+
+    if (head == nullptr)
+    {
+        head = temp;
+    }
+
+    else
+    {
+        Node* current = head;
+
+        while(current->next != nullptr)
+        {
+            current = current->next;
+        }
+
+        current->next = temp;   
+    }
+}
+
+
+void List::pop_back()
+{
+    if (head == nullptr)
+    {
+        return;
+    }
+
+    if (head->next == nullptr)
+    {
+        delete head;
+        head = nullptr;
+    }
+
+    else
+    {
+        Node* current = head;
+
+        while(current->next->next != nullptr)
+        {
+            current = current->next;
+        }
+    
+        delete(current->next);
+        current->next = nullptr;
+    }
+}
+
 int List::size() const
 {
     Node* current = head;

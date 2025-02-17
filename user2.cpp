@@ -1,60 +1,46 @@
 #include <iostream> 
-#include "mylist2.h" 
-#include "myvector2.h"
+#include "mylist.h" 
+#include "myvector.h"
 #include "payload.h"
  
 using namespace std;
 
-int main() 
-{ 
-    // Using List
-    List<Payload> s;
-    s.push_front(Payload("apple"));
-    s.push_front(Payload("pear"));
-    s.push_front(Payload("banana"));
+#include <iostream>
+#include "myvector.h"
 
-    cout << "\n";
+using namespace std;
 
-    for (const auto &i : s) 
+int main()
+{
+    auto showList = [](const List & s)
     {
-        i.print();  
-        cout << "\n";
-    }
-
-    s.pop_front();
-    cout << "\n";
-
-    for (const auto &i : s) 
+        cout << "List size: " << s.size() << '\n';
+        s.print();
+        cout << '\n';
+    };
     {
-        i.print();  
-        cout << "\n";
-    }
-
-    cout << "\n";
-    cout << "\n";
-
-    // Using Vector 
-    Vector<Payload> v;
-    v.push_back(Payload("tomato"));
-    v.push_back(Payload("carrot"));
-    v.push_back(Payload("cucumber"));
+        cout << "=== Testing push_back() ===" << endl;
+        List s;
+        s.push_back("apple");
+        s.push_back("banana");
+        s.push_back("cherry");
+        showList(s);
+        cout << "\n" << endl;
     
-    cout << "\n";
-
-    for (const auto &i : v) 
-    {
-        i.print();  
-        cout << "\n";
+        cout << "=== Testing push_front() ===" << endl;
+        s.push_front("orange");
+        s.push_front("pear");
+        showList(s);
+        cout << "\n" << endl;
+    
+        cout << "=== Testing pop_front() ===" << endl;
+        s.pop_front();
+        showList(s);
+        cout << "\n" << endl;
+    
+        cout << "=== Testing pop_back() ===" << endl;
+        s.pop_back();
+        showList(s);
+        cout << "\n" << endl;
     }
-
-    v.pop_back();
-    cout << "\n";
-
-    for (const auto &i : v) 
-    {
-        i.print();  
-        cout << "\n";
-    }
-
-    return 0;
-} 
+}
