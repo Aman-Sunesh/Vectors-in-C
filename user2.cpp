@@ -1,26 +1,26 @@
 #include <iostream> 
-#include "myvector.h" 
+#include "mylist2.h" 
  
 using std::cout; 
  
 int main() 
 { 
-    Vector v; 
+    List s; 
 
-    v.push_back("apple"); 
-    v.push_back("pear"); 
-    v.push_back("banana"); 
+    s.push_front("apple"); 
+    s.push_front("pear"); 
+    s.push_front("banana"); 
 
-    for (const auto &i : v) 
+    for (const auto &i : s) 
     {
         i.print();  
         cout << "\n";
     }
     
     cout << "\n";
-    v.pop_back(); 
+    s.pop_front(); 
 
-    for (const auto &i : v) 
+    for (const auto &i : s) 
     {
         i.print();  
         cout << "\n";

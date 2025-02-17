@@ -1,34 +1,36 @@
 #include <iostream>
-#include "mylist.h"
 
-using namespace std;
-
-List::List()
+template<typename T>
+List<T>::List()
 {
     head = nullptr;
 }
 
-void List::push_front(const Payload& x)
+template<typename T>
+void List<T>::push_front(const T& x)
 {
-    Node* temp = new Node(x);
+    Node<T>* temp = new Node<T>(x);
     temp->next = head;
     head = temp;
 }
 
 
-void List::pop_front()
+template<typename T>
+void List<T>::pop_front()
 {
     if (head != nullptr)
     {
-        Node* temp = head;
+        Node<T>* temp = head;
         head = head->next;
         delete temp;
     }
 }
 
-int List::size() const
+
+template<typename T>
+int List<T>::size() const
 {
-    Node* current = head;
+    Node<T>* current = head;
     int count = 0;
 
     while (current != nullptr)
@@ -40,9 +42,11 @@ int List::size() const
     return count;
 }
 
-void List::print() const
+
+template<typename T>
+void List<T>::print() const
 {
-    Node* current = head;
+    Node<T>* current = head;
 
     while (current != nullptr)
     {
@@ -51,7 +55,9 @@ void List::print() const
     }
 }
 
-List::~List()
+
+template<typename T>
+List<T>::~List()
 {
     while (head != nullptr)
     {

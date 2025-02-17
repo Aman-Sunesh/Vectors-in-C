@@ -1,0 +1,27 @@
+#pragma once
+
+#include "payload.h"
+
+struct Node
+{
+    Payload data;
+    Node* next;
+
+    Node(const Payload& data)
+    {
+        this->data = data;
+        this->next = nullptr;
+    }
+};
+
+struct List
+{
+    Node* head;
+
+    List();
+    void push_front(const Payload& x);
+    void pop_front();
+    int size() const;
+    void print() const;
+    ~List();
+};
