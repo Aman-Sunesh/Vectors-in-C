@@ -1,4 +1,6 @@
-#include "myvector.h"
+#include <iostream>
+
+using namespace std;
 
 template<typename T>
 Vector<T>::Vector()
@@ -48,7 +50,7 @@ void Vector<T>::pop_back()
 
 
 template<typename T>
-void Vector<T>::push_front(const Payload& x)
+void Vector<T>::push_front(const T& x)
 {
     if (vec_size == vec_capacity)
     {

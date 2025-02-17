@@ -1,28 +1,60 @@
 #include <iostream> 
 #include "mylist2.h" 
+#include "myvector2.h"
+#include "payload.h"
  
-using std::cout; 
- 
+using namespace std;
+
 int main() 
 { 
-    List s; 
+    // Using List
+    List<Payload> s;
+    s.push_front(Payload("apple"));
+    s.push_front(Payload("pear"));
+    s.push_front(Payload("banana"));
 
-    s.push_front("apple"); 
-    s.push_front("pear"); 
-    s.push_front("banana"); 
+    cout << "\n";
 
     for (const auto &i : s) 
     {
         i.print();  
         cout << "\n";
     }
+
+    s.pop_front();
+    cout << "\n";
+
+    for (const auto &i : s) 
+    {
+        i.print();  
+        cout << "\n";
+    }
+
+    cout << "\n";
+    cout << "\n";
+
+    // Using Vector 
+    Vector<Payload> v;
+    v.push_back(Payload("tomato"));
+    v.push_back(Payload("carrot"));
+    v.push_back(Payload("cucumber"));
     
     cout << "\n";
-    s.pop_front(); 
 
-    for (const auto &i : s) 
+    for (const auto &i : v) 
     {
         i.print();  
         cout << "\n";
     }
+
+    v.pop_back();
+    cout << "\n";
+
+    for (const auto &i : v) 
+    {
+        i.print();  
+        cout << "\n";
+    }
+
+    return 0;
 } 

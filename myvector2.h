@@ -64,5 +64,6 @@ struct Vector
     {
         return Iterator(arr + vec_size);
     }
-
 }; 
+
+#include "myvector.inc"
